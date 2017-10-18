@@ -1,0 +1,30 @@
+CREATE DATABASE sistema_estacao
+
+CREATE TABLE dados(
+	id_dados SERIAL NOT NULL,
+	id_localizacao INTEGER NOT NULL,
+	velocidade_vento NUMERIC,
+	umidade NUMERIC,
+	temperatura NUMERIC,
+	pressao_atmosferica NUMERIC,
+	data_coleta DATE,
+	descricao VARCHAR(255),
+	PRIMARY KEY(id_dados)
+);
+
+CREATE TABLE localizacao(
+	id_localizacao SERIAL NOT NULL,
+	descricao VARCHAR(255),
+	PRIMARY KEY(id_localizacao)	
+);
+
+CREATE TABLE relatorio(
+	id_relatorio SERIAL NOT NULL,
+	descricao VARCHAR(255),
+	PRIMARY KEY(id_relatorio)
+
+);
+
+ALTER TABLE dados
+    ADD CONSTRAINT fkey_localizacao FOREIGN KEY ( id_localizacao) REFERENCES localizacao (id_localizacao)    
+	
